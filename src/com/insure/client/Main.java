@@ -23,9 +23,11 @@ public class Main {
         int claimID1 = dataStore.createClaim("Vehicle Claim");
         Claim c1 = dataStore.getClaimFromID(claimID1);
         System.out.println(dataStore.printClaim(claimID1));
+
+        runInterface(dataStore);
     }
 
-    public static void runClaimDataStore(ClaimDataStore dataStore){
+    public static void runInterface(ClaimDataStore dataStore){
         String userId= JOptionPane.showInputDialog("Insert personal ID:");
         int user=Integer.parseInt(userId);
         while(true){
@@ -34,9 +36,9 @@ public class Main {
                         "Insert what you wish to do:"+"\n"+
                         "1 - Create a Claim" + "\n" +
                         "2 - Add a Document to a Claim"+"\n"+
-                        "3 - Retrieve Documents from a Claim"+"\n"+
-                        "Exit program");
-                if (method.equals("Exit program")){
+                        "3 - Retrieve Documents from a Claim"+"\n"+"\n"+
+                        "Exit");
+                if (method.equals("Exit")){
                     break;
                 }
                 if (method.equals("1")){
