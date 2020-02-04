@@ -21,5 +21,6 @@ public class Main {
 
         int claimID1 = dataStore.createClaim("Vehicle Claim");
         Claim c1 = dataStore.getClaimFromID(claimID1);
+        System.out.println(dataStore.printClaim(claimID1));
     }
 }

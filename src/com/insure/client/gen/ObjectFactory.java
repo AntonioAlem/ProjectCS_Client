@@ -31,6 +31,8 @@ public class ObjectFactory {
     private final static QName _CreateClaimResponse_QNAME = new QName("http://server.insure.com/", "createClaimResponse");
     private final static QName _GetClaimFromID_QNAME = new QName("http://server.insure.com/", "getClaimFromID");
     private final static QName _GetClaimFromIDResponse_QNAME = new QName("http://server.insure.com/", "getClaimFromIDResponse");
+    private final static QName _PrintClaim_QNAME = new QName("http://server.insure.com/", "printClaim");
+    private final static QName _PrintClaimResponse_QNAME = new QName("http://server.insure.com/", "printClaimResponse");
     private final static QName _RetrieveDocuments_QNAME = new QName("http://server.insure.com/", "retrieveDocuments");
     private final static QName _RetrieveDocumentsResponse_QNAME = new QName("http://server.insure.com/", "retrieveDocumentsResponse");
     private final static QName _Size_QNAME = new QName("http://server.insure.com/", "size");
@@ -97,6 +99,22 @@ public class ObjectFactory {
      */
     public GetClaimFromIDResponse createGetClaimFromIDResponse() {
         return new GetClaimFromIDResponse();
+    }
+
+    /**
+     * Create an instance of {@link PrintClaim }
+     * 
+     */
+    public PrintClaim createPrintClaim() {
+        return new PrintClaim();
+    }
+
+    /**
+     * Create an instance of {@link PrintClaimResponse }
+     * 
+     */
+    public PrintClaimResponse createPrintClaimResponse() {
+        return new PrintClaimResponse();
     }
 
     /**
@@ -236,6 +254,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://server.insure.com/", name = "getClaimFromIDResponse")
     public JAXBElement<GetClaimFromIDResponse> createGetClaimFromIDResponse(GetClaimFromIDResponse value) {
         return new JAXBElement<GetClaimFromIDResponse>(_GetClaimFromIDResponse_QNAME, GetClaimFromIDResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link PrintClaim }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link PrintClaim }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "printClaim")
+    public JAXBElement<PrintClaim> createPrintClaim(PrintClaim value) {
+        return new JAXBElement<PrintClaim>(_PrintClaim_QNAME, PrintClaim.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link PrintClaimResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link PrintClaimResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "printClaimResponse")
+    public JAXBElement<PrintClaimResponse> createPrintClaimResponse(PrintClaimResponse value) {
+        return new JAXBElement<PrintClaimResponse>(_PrintClaimResponse_QNAME, PrintClaimResponse.class, null, value);
     }
 
     /**
