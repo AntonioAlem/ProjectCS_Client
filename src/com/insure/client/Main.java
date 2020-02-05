@@ -12,7 +12,7 @@ import java.io.IOException;
 public class Main {
     private static ClaimDataStore docStorage;
 
-    public static void main(String[] args) throws IOException, IDNotFoundException_Exception {
+    public static void main(String[] args) {
         String url = "http://localhost:8090/docstorage";
         ClaimDataStoreService dss = new ClaimDataStoreService();
 
@@ -20,9 +20,11 @@ public class Main {
 
         ((BindingProvider) dataStore).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, url);
 
+        /*
         int claimID1 = dataStore.createClaim("Vehicle Claim");
         Claim c1 = dataStore.getClaimFromID(claimID1);
         System.out.println(dataStore.printClaim(claimID1));
+        */
 
         runInterface(dataStore);
     }
@@ -30,13 +32,17 @@ public class Main {
     public static void runInterface(ClaimDataStore dataStore){
         String userId= JOptionPane.showInputDialog("Insert personal ID:");
         int user=Integer.parseInt(userId);
+        //VALIDATE PERSONAL ID
+        //
+
         while(true){
             try{
                 String method=JOptionPane.showInputDialog(
                         "Insert what you wish to do:"+"\n"+
                         "1 - Create a Claim" + "\n" +
                         "2 - Add a Document to a Claim"+"\n"+
-                        "3 - Retrieve Documents from a Claim"+"\n"+"\n"+
+                        "3 - Retrieve Documents from a Claim"+"\n"+
+                                "\n"+
                         "4 - Exit");
                 if (method.equals("4")){
                     break;
@@ -51,12 +57,10 @@ public class Main {
                     String uuid = JOptionPane.showInputDialog("Insert ID of your Claim:");
                     int id=Integer.parseInt(uuid);
 
-
-                    //String pathprivatekey="keys\\privateKeys\\user"+user+"\\user"+user+"PrivateKey";
-
+                    String pathprivatekey="keys\\privateKeys\\user"+user+"\\user"+user+"PrivateKey";
 
                     String content=JOptionPane.showInputDialog("Insert the content of the document");
-                    dataStore.createAddDocument(user, id ,content);
+                    dataStore.createAddDocument(user, id ,content, encryptedHash);//ADD PERSONAL USER ID AS 4th ARGUMENT
                     JOptionPane.showMessageDialog(null, "You added a document in your Claim");
                 }
 

@@ -10,8 +10,8 @@ import javax.xml.ws.WebFault;
  * Generated source version: 2.2
  * 
  */
-@WebFault(name = "claimIDNotFoundException", targetNamespace = "http://server.insure.com/")
-public class ClaimIDNotFoundException_Exception
+@WebFault(name = "Exception", targetNamespace = "http://server.insure.com/")
+public class Exception_Exception
     extends java.lang.Exception
 {
 
@@ -19,14 +19,14 @@ public class ClaimIDNotFoundException_Exception
      * Java type that goes as soapenv:Fault detail element.
      * 
      */
-    private ClaimIDNotFoundException faultInfo;
+    private com.insure.client.gen.Exception faultInfo;
 
     /**
      * 
      * @param faultInfo
      * @param message
      */
-    public ClaimIDNotFoundException_Exception(String message, ClaimIDNotFoundException faultInfo) {
+    public Exception_Exception(String message, com.insure.client.gen.Exception faultInfo) {
         super(message);
         this.faultInfo = faultInfo;
     }
@@ -37,7 +37,7 @@ public class ClaimIDNotFoundException_Exception
      * @param cause
      * @param message
      */
-    public ClaimIDNotFoundException_Exception(String message, ClaimIDNotFoundException faultInfo, Throwable cause) {
+    public Exception_Exception(String message, com.insure.client.gen.Exception faultInfo, Throwable cause) {
         super(message, cause);
         this.faultInfo = faultInfo;
     }
@@ -45,9 +45,9 @@ public class ClaimIDNotFoundException_Exception
     /**
      * 
      * @return
-     *     returns fault bean: com.insure.client.gen.ClaimIDNotFoundException
+     *     returns fault bean: com.insure.client.gen.Exception
      */
-    public ClaimIDNotFoundException getFaultInfo() {
+    public com.insure.client.gen.Exception getFaultInfo() {
         return faultInfo;
     }
 

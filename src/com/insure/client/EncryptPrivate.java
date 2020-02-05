@@ -11,10 +11,11 @@ import java.security.PrivateKey;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.util.Base64;
 
-public class SigGeneration {
+public class EncryptPrivate {
+
     private Cipher cipher;
 
-    public SigGeneration() throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public EncryptPrivate() throws NoSuchAlgorithmException, NoSuchPaddingException {
         this.cipher = Cipher.getInstance("RSA");
     }
 
@@ -26,22 +27,22 @@ public class SigGeneration {
         return kf.generatePrivate(spec);
     }
 
-    public String encryptText (byte [] msg, PrivateKey key)
+    public String encryptText (String msg, PrivateKey key)
             throws Exception {
         cipher.init(1, key);
-        return Base64.getEncoder().encodeToString(cipher.doFinal(msg));
+        return Base64.getEncoder().encodeToString(cipher.doFinal(msg.getBytes("UTF-8")));
     }
 
     public static void main (String[] args) throws Exception {
-        SigGeneration c1 = new SigGeneration();
+        EncryptPrivate c1 = new EncryptPrivate();
         PrivateKey privateKey = c1.getPrivate("keys\\user1\\user1PrivateKey");
         String msg = "Cryptography is fun!";
         MessageDigest digest = MessageDigest.getInstance("SHA-256");
-        byte[] hash = digest.digest(msg.getBytes());
+        String hash = Base64.getEncoder().encodeToString(digest.digest(msg.getBytes("UTF-8")));
         String encrypted_hash = c1.encryptText(hash, privateKey);
 
         System.out.println("Original Message: " + msg +
-                "\nHash: " + Base64.getEncoder().encodeToString(hash) +
+                "\nHash: " + hash +
                 "\nEncrypted Hash: " + encrypted_hash);
     }
 }
