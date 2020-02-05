@@ -37,8 +37,8 @@ public class Main {
                         "1 - Create a Claim" + "\n" +
                         "2 - Add a Document to a Claim"+"\n"+
                         "3 - Retrieve Documents from a Claim"+"\n"+"\n"+
-                        "Exit");
-                if (method.equals("Exit")){
+                        "4 - Exit");
+                if (method.equals("4")){
                     break;
                 }
                 if (method.equals("1")){
@@ -48,8 +48,9 @@ public class Main {
                     JOptionPane.showMessageDialog(null, "Your Claim was created: "+ claim);
                 }
                 if (method.equals("2")){
-                    String uuid=JOptionPane.showInputDialog("Insert ID of your Claim:");
+                    String uuid = JOptionPane.showInputDialog("Insert ID of your Claim:");
                     int id=Integer.parseInt(uuid);
+
 
                     //String pathprivatekey="keys\\privateKeys\\user"+user+"\\user"+user+"PrivateKey";
 
