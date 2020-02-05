@@ -5,16 +5,17 @@ import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.nio.file.Files;
 import java.security.*;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 import java.util.Scanner;
 
-public class SigVerification {
+public class DecryptPublic {
     private Cipher cipher;
 
-    public SigVerification() throws NoSuchAlgorithmException, NoSuchPaddingException {
+    public DecryptPublic() throws NoSuchAlgorithmException, NoSuchPaddingException {
         this.cipher = Cipher.getInstance("RSA");
     }
 
@@ -25,13 +26,14 @@ public class SigVerification {
         return kf.generatePublic(spec);
     }
 
-    public byte[] decryptBytes(String msg, Key key) throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException {
+    public String decryptText(String msg, Key key) throws InvalidKeyException, BadPaddingException, IllegalBlockSizeException, UnsupportedEncodingException {
         this.cipher.init(Cipher.DECRYPT_MODE, key);
-        return this.cipher.doFinal(Base64.getDecoder().decode(msg));
+        return new String (cipher.doFinal(Base64.getDecoder().decode(msg)), "UTF-8");
     }
 
     public static void main(String[] args) throws Exception {
-        SigVerification v1 = new SigVerification ();
+
+        DecryptPublic v1 = new DecryptPublic();
         PublicKey publicKey = v1.getPublic("keys\\user1\\user1PublicKey");
 
         System.out.println("Enter the original message:");
@@ -44,7 +46,7 @@ public class SigVerification {
         System.out.println("Encrypted Hash: ");
         in = new Scanner(System.in);
         String encrypted_hash = in.nextLine();
-        String received_hash = Base64.getEncoder().encodeToString(v1.decryptBytes(encrypted_hash, publicKey));
+        String received_hash = v1.decryptText(encrypted_hash, publicKey);
 
         System.out.println("Message: " + msg +
                 "\nmessage Hash: " + hash +
