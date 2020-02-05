@@ -3,7 +3,6 @@ package com.insure.client;
 import com.insure.client.gen.Claim;
 import com.insure.client.gen.ClaimDataStore;
 import com.insure.client.gen.ClaimDataStoreService;
-import com.insure.client.gen.ClaimIDNotFoundException_Exception;
 import com.insure.client.gen.IDNotFoundException_Exception;
 
 import javax.swing.*;
@@ -38,7 +37,7 @@ public class Main {
                         "1 - Create a Claim" + "\n" +
                         "2 - Add a Document to a Claim"+"\n"+
                         "3 - Retrieve Documents from a Claim"+"\n"+"\n"+
-                        "4 - Exit" + "\n" + "\n" );
+                        "4 - Exit");
                 if (method.equals("4")){
                     break;
                 }
@@ -49,8 +48,9 @@ public class Main {
                     JOptionPane.showMessageDialog(null, "Your Claim was created: "+ claim);
                 }
                 if (method.equals("2")){
-                    String uuid=JOptionPane.showInputDialog("Insert ID of your Claim:");
+                    String uuid = JOptionPane.showInputDialog("Insert ID of your Claim:");
                     int id=Integer.parseInt(uuid);
+
 
                     //String pathprivatekey="keys\\privateKeys\\user"+user+"\\user"+user+"PrivateKey";
 
@@ -66,7 +66,7 @@ public class Main {
                     JOptionPane.showMessageDialog(null, dataStore.retrieveDocuments(id));
                 }
 
-            } catch (ClaimIDNotFoundException_Exception e){
+            } catch (Exception e){
 
             }
         }
