@@ -1,7 +1,5 @@
 package com.insure.client;
 
-import com.insure.server.exceptions.documentWasTamperedException;
-
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -44,6 +42,7 @@ public class Signature {
         String hash = createHash(content);
         return encryptedHash(hash,fileName);
     }
+
     //verificaçao da assinatura:
     public boolean verifySignature(String content,String encryptedHash,String filename) throws Exception {
         String decryptedHash =this.decryptHash(filename,encryptedHash);
@@ -61,6 +60,6 @@ public class Signature {
             //System.out.println(signature.getHash()+"\n");
            // System.out.println(signature.getEncryptedHash()+"\n");
         //}
-    }
+}
 
 
