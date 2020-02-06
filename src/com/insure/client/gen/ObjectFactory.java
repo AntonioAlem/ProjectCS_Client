@@ -40,6 +40,8 @@ public class ObjectFactory {
     private final static QName _RetrieveDocumentsResponse_QNAME = new QName("http://server.insure.com/", "retrieveDocumentsResponse");
     private final static QName _Size_QNAME = new QName("http://server.insure.com/", "size");
     private final static QName _SizeResponse_QNAME = new QName("http://server.insure.com/", "sizeResponse");
+    private final static QName _UpdateDocument_QNAME = new QName("http://server.insure.com/", "updateDocument");
+    private final static QName _UpdateDocumentResponse_QNAME = new QName("http://server.insure.com/", "updateDocumentResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: com.insure.client.gen
@@ -174,6 +176,22 @@ public class ObjectFactory {
      */
     public SizeResponse createSizeResponse() {
         return new SizeResponse();
+    }
+
+    /**
+     * Create an instance of {@link UpdateDocument }
+     * 
+     */
+    public UpdateDocument createUpdateDocument() {
+        return new UpdateDocument();
+    }
+
+    /**
+     * Create an instance of {@link UpdateDocumentResponse }
+     * 
+     */
+    public UpdateDocumentResponse createUpdateDocumentResponse() {
+        return new UpdateDocumentResponse();
     }
 
     /**
@@ -398,6 +416,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://server.insure.com/", name = "sizeResponse")
     public JAXBElement<SizeResponse> createSizeResponse(SizeResponse value) {
         return new JAXBElement<SizeResponse>(_SizeResponse_QNAME, SizeResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateDocument }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link UpdateDocument }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "updateDocument")
+    public JAXBElement<UpdateDocument> createUpdateDocument(UpdateDocument value) {
+        return new JAXBElement<UpdateDocument>(_UpdateDocument_QNAME, UpdateDocument.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link UpdateDocumentResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link UpdateDocumentResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "updateDocumentResponse")
+    public JAXBElement<UpdateDocumentResponse> createUpdateDocumentResponse(UpdateDocumentResponse value) {
+        return new JAXBElement<UpdateDocumentResponse>(_UpdateDocumentResponse_QNAME, UpdateDocumentResponse.class, null, value);
     }
 
 }

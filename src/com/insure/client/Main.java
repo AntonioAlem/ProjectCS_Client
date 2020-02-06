@@ -26,13 +26,23 @@ public class Main {
     public static void runInterface(ClaimDataStore dataStore) throws Exception {
 
         String userID = JOptionPane.showInputDialog("Insert personal ID:");
+
         while (userID.equals("")) { //repeat user ID request until inserted value not null
             userID = JOptionPane.showInputDialog("Insert personal ID:");
         }
+
+        try {
+            int numb = Integer.parseInt(userID);
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Invalid user ID");
+            userID = JOptionPane.showInputDialog("Insert personal ID:");
+        }
+
+
         int numb = Integer.parseInt(userID);
+
         String findUser = ("keys\\user" + userID + "PublicKey");//VALIDATE PERSONAL ID
         File f = new File(findUser);
-
         if (f.exists()) {
             while (true) {
                 String method = JOptionPane.showInputDialog(
@@ -40,7 +50,7 @@ public class Main {
                                 "1 - Create a Claim" + "\n" +
                                 "2 - Add a Document to a Claim" + "\n" +
                                 "3 - Retrieve Documents from a Claim" + "\n" +
-                                "4 - Delete a Document  from a Claim"  + "\n" +
+                                "4 - Delete a Document  from a Claim" + "\n" +
                                 "\n" +
                                 "5 - Exit");
 
@@ -90,7 +100,7 @@ public class Main {
                         }
                         int claimID = Integer.parseInt(uuid);
                         JOptionPane.showMessageDialog(null, dataStore.retrieveDocuments(claimID, numb));//Show all documents of the claim
-                    }catch (UserException_Exception e) {
+                    } catch (UserException_Exception e) {
                         String message = e.getMessage();
                         JOptionPane.showMessageDialog(null, message);
                     }
@@ -108,7 +118,7 @@ public class Main {
                         }
                         int docID = Integer.parseInt(ddid);
                         dataStore.deleteDocuments(claimID, docID, numb);
-                    }catch (UserException_Exception e) {
+                    } catch (UserException_Exception e) {
                         String message = e.getMessage();
                         JOptionPane.showMessageDialog(null, message);
                     }
@@ -120,6 +130,8 @@ public class Main {
         }
     }
 }
+
+
 
 
 
