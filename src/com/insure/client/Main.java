@@ -91,7 +91,7 @@ public class Main {
                         JOptionPane.showMessageDialog(null, "Claim ID not found");
                         JOptionPane.showInputDialog("Insert Claim ID:");
                     }
-                    JOptionPane.showMessageDialog(null, dataStore.retrieveDocuments(claimID));//Show all documents of the claim
+                    JOptionPane.showMessageDialog(null, dataStore.retrieveDocuments(claimID,numb));//Show all documents of the claim
                 }
             }
         } else {
