@@ -88,7 +88,7 @@ public class Main {
                         System.out.println(dataStore.retrieveDocuments(claimID));
                         JOptionPane.showMessageDialog(null, dataStore.retrieveDocuments(claimID));
 //                      //
-                        /*
+
                        while (claimID != Integer.parseInt(userID))
                             uuid = JOptionPane.showInputDialog("This claim belongs to another user. \n Insert a valid claim ID:");
 
@@ -101,14 +101,14 @@ public class Main {
 
                         String encryptedHash = document.();
                         Signature sign = new Signature();
-                        boolean validation = sign.verifySignature("publicKeys\\" + "user" + userID + "PublicKey", encryptedHash, document.getContent());
+                        boolean validation = sign.verifySignature("publicKeys\\" + "user" + userID + "PublicKey", encryptedHash, document.());
 
                         if (validation)
                             JOptionPane.showMessageDialog(null, docToString + "\nThis document was not tampered!\n" + "\nPress 'OK' to continue.");
                         else
                             JOptionPane.showMessageDialog(null, docToString + "\nThis document was tampered!\n" + "\nPress 'OK' to continue.");
 
-*/
+
 
                         //
                     }
