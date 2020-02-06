@@ -71,6 +71,7 @@ public class Main {
                         String content = JOptionPane.showInputDialog("Insert the content of the document");
                         Signature sig = new Signature();
                         String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID + "PrivateKey", content);
+
                         dataStore.createAddDocument(numb, claimID, content, signature);
                         JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress'OK' to continue");
 
