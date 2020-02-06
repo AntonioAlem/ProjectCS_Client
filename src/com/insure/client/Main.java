@@ -30,12 +30,10 @@ public class Main {
     }
 
     public static void runInterface(ClaimDataStore dataStore) throws Exception {
-        for(int i=1; i<=dataStore.size();i++) {
-            System.out.println(dataStore.printClaim(i));
-        }
+
         String userID= JOptionPane.showInputDialog("Insert personal ID:");
         while (userID.equals("")){ //repeat user ID request until inserted value not null
-            userID = JOptionPane.showInputDialog("Insert Claim ID:");}
+            userID = JOptionPane.showInputDialog("Insert personal ID:");}
         int numb=Integer.parseInt(userID);
         String findUser=("keys\\user"+userID+"PublicKey");//VALIDATE PERSONAL ID
         File f =new File(findUser);
@@ -103,6 +101,7 @@ public class Main {
                         }
 
                         JOptionPane.showMessageDialog(null, dataStore.retrieveDocuments(claimID));//Show all documents of the claim
+                    }
 
                     /*
                         while (claimID != Integer.parseInt(userID)) {
@@ -121,7 +120,6 @@ public class Main {
                         else
                             JOptionPane.showMessageDialog(null, docToString + "\nThis document was tampered!\n" + "\nPress 'OK' to continue.");
                     */
-                    }
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Claim ID not found "+ e);
                 }
