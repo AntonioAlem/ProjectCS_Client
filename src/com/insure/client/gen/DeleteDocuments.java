@@ -7,17 +7,18 @@ import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for retrieveDocuments complex type.
+ * <p>Java class for deleteDocuments complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType name="retrieveDocuments"&gt;
+ * &lt;complexType name="deleteDocuments"&gt;
  *   &lt;complexContent&gt;
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
  *       &lt;sequence&gt;
  *         &lt;element name="arg0" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *         &lt;element name="arg1" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
+ *         &lt;element name="arg2" type="{http://www.w3.org/2001/XMLSchema}int"/&gt;
  *       &lt;/sequence&gt;
  *     &lt;/restriction&gt;
  *   &lt;/complexContent&gt;
@@ -27,14 +28,16 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "retrieveDocuments", propOrder = {
+@XmlType(name = "deleteDocuments", propOrder = {
     "arg0",
-    "arg1"
+    "arg1",
+    "arg2"
 })
-public class RetrieveDocuments {
+public class DeleteDocuments {
 
     protected int arg0;
     protected int arg1;
+    protected int arg2;
 
     /**
      * Gets the value of the arg0 property.
@@ -66,6 +69,22 @@ public class RetrieveDocuments {
      */
     public void setArg1(int value) {
         this.arg1 = value;
+    }
+
+    /**
+     * Gets the value of the arg2 property.
+     * 
+     */
+    public int getArg2() {
+        return arg2;
+    }
+
+    /**
+     * Sets the value of the arg2 property.
+     * 
+     */
+    public void setArg2(int value) {
+        this.arg2 = value;
     }
 
 }

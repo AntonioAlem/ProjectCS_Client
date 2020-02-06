@@ -40,10 +40,11 @@ public class Main {
                                 "1 - Create a Claim" + "\n" +
                                 "2 - Add a Document to a Claim" + "\n" +
                                 "3 - Retrieve Documents from a Claim" + "\n" +
+                                "4 - Delete a Document  from a Claim"  + "\n" +
                                 "\n" +
-                                "4 - Exit");
+                                "5 - Exit");
 
-                if (method.equals("4")) {
+                if (method.equals("5")) {
                     break;
                 }
 
@@ -70,7 +71,7 @@ public class Main {
                         String content = JOptionPane.showInputDialog("Insert the content of the document");
                         Signature sig = new Signature();
                         String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID + "PrivateKey", content);
-                        System.out.println(signature);
+
                         dataStore.createAddDocument(numb, claimID, content, signature);
                         JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress'OK' to continue");
 
@@ -82,16 +83,35 @@ public class Main {
 
 
                 if (method.equals("3")) { //3 - Retrieve Documents from a Claim
-                    String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
-                    while (uuid.equals("")) { //repeat Claim ID request until inserted value not null
-                        uuid = JOptionPane.showInputDialog("Insert Claim ID:");
+                    try {
+                        String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
+                        while (uuid.equals("")) { //repeat Claim ID request until inserted value not null
+                            uuid = JOptionPane.showInputDialog("Insert Claim ID:");
+                        }
+                        int claimID = Integer.parseInt(uuid);
+                        JOptionPane.showMessageDialog(null, dataStore.retrieveDocuments(claimID, numb));//Show all documents of the claim
+                    }catch (UserException_Exception e) {
+                        String message = e.getMessage();
+                        JOptionPane.showMessageDialog(null, message);
                     }
-                    int claimID = Integer.parseInt(uuid);
-                    while (dataStore.getClaimFromID(claimID) == null) {//repeat Claim ID request until a claim with given iD is found in the dataStore
-                        JOptionPane.showMessageDialog(null, "Claim ID not found");
-                        JOptionPane.showInputDialog("Insert Claim ID:");
+                }
+                if (method.equals("4")) {//4 - Delete a Document  from a Claim
+                    try {
+                        String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
+                        while (uuid.equals("")) { //repeat Claim ID request until inserted value not null
+                            uuid = JOptionPane.showInputDialog("Insert Claim ID:");
+                        }
+                        int claimID = Integer.parseInt(uuid);
+                        String ddid = JOptionPane.showInputDialog("Insert Document ID:");
+                        while (ddid.equals("")) { //repeat Claim ID request until inserted value not null
+                            ddid = JOptionPane.showInputDialog("Insert Document ID:");
+                        }
+                        int docID = Integer.parseInt(ddid);
+                        dataStore.deleteDocuments(claimID, docID, numb);
+                    }catch (UserException_Exception e) {
+                        String message = e.getMessage();
+                        JOptionPane.showMessageDialog(null, message);
                     }
-                    JOptionPane.showMessageDialog(null, dataStore.retrieveDocuments(claimID));//Show all documents of the claim
                 }
             }
         } else {
