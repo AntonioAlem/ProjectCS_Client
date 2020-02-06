@@ -30,6 +30,8 @@ public class ObjectFactory {
     private final static QName _CreateAddDocumentResponse_QNAME = new QName("http://server.insure.com/", "createAddDocumentResponse");
     private final static QName _CreateClaim_QNAME = new QName("http://server.insure.com/", "createClaim");
     private final static QName _CreateClaimResponse_QNAME = new QName("http://server.insure.com/", "createClaimResponse");
+    private final static QName _DeleteDocuments_QNAME = new QName("http://server.insure.com/", "deleteDocuments");
+    private final static QName _DeleteDocumentsResponse_QNAME = new QName("http://server.insure.com/", "deleteDocumentsResponse");
     private final static QName _GetClaimFromID_QNAME = new QName("http://server.insure.com/", "getClaimFromID");
     private final static QName _GetClaimFromIDResponse_QNAME = new QName("http://server.insure.com/", "getClaimFromIDResponse");
     private final static QName _PrintClaim_QNAME = new QName("http://server.insure.com/", "printClaim");
@@ -92,6 +94,22 @@ public class ObjectFactory {
      */
     public CreateClaimResponse createCreateClaimResponse() {
         return new CreateClaimResponse();
+    }
+
+    /**
+     * Create an instance of {@link DeleteDocuments }
+     * 
+     */
+    public DeleteDocuments createDeleteDocuments() {
+        return new DeleteDocuments();
+    }
+
+    /**
+     * Create an instance of {@link DeleteDocumentsResponse }
+     * 
+     */
+    public DeleteDocumentsResponse createDeleteDocumentsResponse() {
+        return new DeleteDocumentsResponse();
     }
 
     /**
@@ -250,6 +268,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://server.insure.com/", name = "createClaimResponse")
     public JAXBElement<CreateClaimResponse> createCreateClaimResponse(CreateClaimResponse value) {
         return new JAXBElement<CreateClaimResponse>(_CreateClaimResponse_QNAME, CreateClaimResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteDocuments }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link DeleteDocuments }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "deleteDocuments")
+    public JAXBElement<DeleteDocuments> createDeleteDocuments(DeleteDocuments value) {
+        return new JAXBElement<DeleteDocuments>(_DeleteDocuments_QNAME, DeleteDocuments.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link DeleteDocumentsResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link DeleteDocumentsResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "deleteDocumentsResponse")
+    public JAXBElement<DeleteDocumentsResponse> createDeleteDocumentsResponse(DeleteDocumentsResponse value) {
+        return new JAXBElement<DeleteDocumentsResponse>(_DeleteDocumentsResponse_QNAME, DeleteDocumentsResponse.class, null, value);
     }
 
     /**
