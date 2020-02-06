@@ -27,6 +27,58 @@ public interface ClaimDataStore {
 
     /**
      * 
+     * @return
+     *     returns int
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "size", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.Size")
+    @ResponseWrapper(localName = "sizeResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.SizeResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/sizeRequest", output = "http://server.insure.com/ClaimDataStore/sizeResponse")
+    public int size();
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns com.insure.client.gen.Claim
+     * @throws ClaimIDNotFoundException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "getClaimFromID", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.GetClaimFromID")
+    @ResponseWrapper(localName = "getClaimFromIDResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.GetClaimFromIDResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/getClaimFromIDRequest", output = "http://server.insure.com/ClaimDataStore/getClaimFromIDResponse", fault = {
+        @FaultAction(className = ClaimIDNotFoundException_Exception.class, value = "http://server.insure.com/ClaimDataStore/getClaimFromID/Fault/claimIDNotFoundException")
+    })
+    public Claim getClaimFromID(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0)
+        throws ClaimIDNotFoundException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     * @throws ClaimIDNotFoundException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "printClaim", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.PrintClaim")
+    @ResponseWrapper(localName = "printClaimResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.PrintClaimResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/printClaimRequest", output = "http://server.insure.com/ClaimDataStore/printClaimResponse", fault = {
+        @FaultAction(className = ClaimIDNotFoundException_Exception.class, value = "http://server.insure.com/ClaimDataStore/printClaim/Fault/claimIDNotFoundException")
+    })
+    public String printClaim(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0)
+        throws ClaimIDNotFoundException_Exception
+    ;
+
+    /**
+     * 
      * @param arg0
      * @return
      *     returns int
@@ -42,39 +94,32 @@ public interface ClaimDataStore {
 
     /**
      * 
-     * @param arg0
-     * @return
-     *     returns com.insure.client.gen.Claim
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "getClaimFromID", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.GetClaimFromID")
-    @ResponseWrapper(localName = "getClaimFromIDResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.GetClaimFromIDResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/getClaimFromIDRequest", output = "http://server.insure.com/ClaimDataStore/getClaimFromIDResponse")
-    public Claim getClaimFromID(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
-
-    /**
-     * 
+     * @param arg3
      * @param arg2
      * @param arg1
      * @param arg0
      * @return
      *     returns int
+     * @throws Exception_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
     @RequestWrapper(localName = "createAddDocument", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateAddDocument")
     @ResponseWrapper(localName = "createAddDocumentResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateAddDocumentResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/createAddDocumentRequest", output = "http://server.insure.com/ClaimDataStore/createAddDocumentResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/createAddDocumentRequest", output = "http://server.insure.com/ClaimDataStore/createAddDocumentResponse", fault = {
+        @FaultAction(className = Exception_Exception.class, value = "http://server.insure.com/ClaimDataStore/createAddDocument/Fault/Exception")
+    })
     public int createAddDocument(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0,
         @WebParam(name = "arg1", targetNamespace = "")
         int arg1,
         @WebParam(name = "arg2", targetNamespace = "")
-        String arg2);
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3)
+        throws Exception_Exception
+    ;
 
     /**
      * 
@@ -95,32 +140,5 @@ public interface ClaimDataStore {
         int arg0)
         throws ClaimIDNotFoundException_Exception
     ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "printClaim", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.PrintClaim")
-    @ResponseWrapper(localName = "printClaimResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.PrintClaimResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/printClaimRequest", output = "http://server.insure.com/ClaimDataStore/printClaimResponse")
-    public String printClaim(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0);
-
-    /**
-     * 
-     * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "size", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.Size")
-    @ResponseWrapper(localName = "sizeResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.SizeResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/sizeRequest", output = "http://server.insure.com/ClaimDataStore/sizeResponse")
-    public int size();
 
 }
