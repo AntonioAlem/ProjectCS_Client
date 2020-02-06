@@ -25,7 +25,7 @@ import javax.xml.namespace.QName;
 public class ObjectFactory {
 
     private final static QName _Exception_QNAME = new QName("http://server.insure.com/", "Exception");
-    private final static QName _ClaimIDNotFoundException_QNAME = new QName("http://server.insure.com/", "claimIDNotFoundException");
+    private final static QName _UserException_QNAME = new QName("http://server.insure.com/", "UserException");
     private final static QName _CreateAddDocument_QNAME = new QName("http://server.insure.com/", "createAddDocument");
     private final static QName _CreateAddDocumentResponse_QNAME = new QName("http://server.insure.com/", "createAddDocumentResponse");
     private final static QName _CreateClaim_QNAME = new QName("http://server.insure.com/", "createClaim");
@@ -55,11 +55,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link ClaimIDNotFoundException }
+     * Create an instance of {@link UserException }
      * 
      */
-    public ClaimIDNotFoundException createClaimIDNotFoundException() {
-        return new ClaimIDNotFoundException();
+    public UserException createUserException() {
+        return new UserException();
     }
 
     /**
@@ -188,16 +188,16 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link ClaimIDNotFoundException }{@code >}
+     * Create an instance of {@link JAXBElement }{@code <}{@link UserException }{@code >}
      * 
      * @param value
      *     Java instance representing xml element's value.
      * @return
-     *     the new instance of {@link JAXBElement }{@code <}{@link ClaimIDNotFoundException }{@code >}
+     *     the new instance of {@link JAXBElement }{@code <}{@link UserException }{@code >}
      */
-    @XmlElementDecl(namespace = "http://server.insure.com/", name = "claimIDNotFoundException")
-    public JAXBElement<ClaimIDNotFoundException> createClaimIDNotFoundException(ClaimIDNotFoundException value) {
-        return new JAXBElement<ClaimIDNotFoundException>(_ClaimIDNotFoundException_QNAME, ClaimIDNotFoundException.class, null, value);
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "UserException")
+    public JAXBElement<UserException> createUserException(UserException value) {
+        return new JAXBElement<UserException>(_UserException_QNAME, UserException.class, null, value);
     }
 
     /**

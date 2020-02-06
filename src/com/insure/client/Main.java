@@ -20,77 +20,68 @@ public class Main {
 
         ((BindingProvider) dataStore).getRequestContext().put(BindingProvider.ENDPOINT_ADDRESS_PROPERTY, url);
 
-        /*
-        int claimID1 = dataStore.createClaim("Vehicle Claim");
-        Claim c1 = dataStore.getClaimFromID(claimID1);
-        System.out.println(dataStore.printClaim(claimID1));
-        */
-
         runInterface(dataStore);
     }
 
     public static void runInterface(ClaimDataStore dataStore) throws Exception {
-        for(int i=1; i<=dataStore.size();i++) {
-            System.out.println(dataStore.printClaim(i));
+
+        String userID = JOptionPane.showInputDialog("Insert personal ID:");
+        while (userID.equals("")) { //repeat user ID request until inserted value not null
+            userID = JOptionPane.showInputDialog("Insert personal ID:");
         }
-        String userID= JOptionPane.showInputDialog("Insert personal ID:");
-        int numb=Integer.parseInt(userID);
-        String user_number = "user"+userID;
-        //VALIDATE PERSONAL ID
-        String findUser=("keys\\user"+userID+"PublicKey");
-        File f =new File(findUser);
+        int numb = Integer.parseInt(userID);
+        String findUser = ("keys\\user" + userID + "PublicKey");//VALIDATE PERSONAL ID
+        File f = new File(findUser);
+
         if (f.exists()) {
             while (true) {
-                try {
-                    String method = JOptionPane.showInputDialog(
-                            "Insert what you wish to do:" + "\n" +
-                                    "1 - Create a Claim" + "\n" +
-                                    "2 - Add a Document to a Claim" + "\n" +
-                                    "3 - Retrieve Documents from a Claim" + "\n" +
-                                    "\n" +
-                                    "4 - Exit");
+                String method = JOptionPane.showInputDialog(
+                        "Insert what you wish to do:" + "\n" +
+                                "1 - Create a Claim" + "\n" +
+                                "2 - Add a Document to a Claim" + "\n" +
+                                "3 - Retrieve Documents from a Claim" + "\n" +
+                                "\n" +
+                                "4 - Exit");
 
-                    if (method.equals("4")) {
-                        break;
+                if (method.equals("4")) {
+                    break;
+                }
+
+                if (method.equals("1")) {
+                    String description = JOptionPane.showInputDialog("Insert the description of your Claim");
+                    while (description.equals("")) {
+                        description = JOptionPane.showInputDialog("Insert the description of your Claim");
                     }
+                    int claimID = dataStore.createClaim(description);
+                    String claim = dataStore.printClaim(claimID);
+                    JOptionPane.showMessageDialog(null, "Your Claim was created: " + claim);
 
-                    if (method.equals("1")) {
-                        String description = JOptionPane.showInputDialog("Insert the description of your Claim");
-                        while (description.equals("")){
-                            description = JOptionPane.showInputDialog("Insert the description of your Claim");}
-                        int claimID = dataStore.createClaim(description);
-                        String claim = dataStore.printClaim(claimID);
-                        JOptionPane.showMessageDialog(null, "Your Claim was created: " + claim);
+                    for (int i = 1; i <= dataStore.size(); i++) { //apagar
+                        System.out.println(dataStore.printClaim(i)); //apagar
+                    }//apagar
+                }
 
-                        for(int i=1; i<=dataStore.size();i++) { //apagar
-                            System.out.println(dataStore.printClaim(i)); //apagar
-                        }//apagar
+                if (method.equals("2")) {
+                    for (int i = 1; i <= dataStore.size(); i++) {
+                        System.out.println(dataStore.printClaim(i));
                     }
-
-                    if (method.equals("2")) {
-                        for (int i = 1; i <= dataStore.size(); i++) {
-                            System.out.println(dataStore.printClaim(i));
-                        }
-
+                    try {
                         String claimAsString = JOptionPane.showInputDialog("Insert Claim ID:");
-                        while (claimAsString.equals("")){
-                            claimAsString = JOptionPane.showInputDialog("Insert Claim ID:");}
-
-                        int claimID = Integer.parseInt(claimAsString);
-
-                        if (dataStore.getClaimFromID(claimID) == null) {
-                            JOptionPane.showMessageDialog(null, "Claim ID not found");
-                            JOptionPane.showInputDialog("Insert Claim ID:");
-                        } else {
-                            String content = JOptionPane.showInputDialog("Insert the content of the document");
-                            Signature sig = new Signature();
-                            sig.createSignature("keys\\user" + userID + "\\user" + userID + "PrivateKey", content);
-                            String signature = sig.toString();
-                            dataStore.createAddDocument(numb, claimID, content, signature);
-                            JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress'OK' to continue");
+                        while (claimAsString.equals("")) {
+                            claimAsString = JOptionPane.showInputDialog("Insert Claim ID:");
                         }
-
+                        int claimID = Integer.parseInt(claimAsString);
+                        String content = JOptionPane.showInputDialog("Insert the content of the document");
+                        Signature sig = new Signature();
+                        sig.createSignature("keys\\user" + userID + "\\user" + userID + "PrivateKey", content);
+                        String signature = sig.toString();
+                        dataStore.createAddDocument(numb, claimID, content, signature);
+                        JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress'OK' to continue");
+                    } catch (Exception e) {
+                        String message = e.getMessage();
+                        JOptionPane.showMessageDialog(null, message);
                     }
+                }
 
 /*
                     if (method.equals("3")) {
@@ -124,15 +115,14 @@ public class Main {
                         //
                     }
 */
-
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Claim ID not found "+ e);
-                }
             }
-        } else { JOptionPane.showMessageDialog(null, "User ID not found");
+        } else {
+            JOptionPane.showMessageDialog(null, "User ID not found");
             runInterface(dataStore);
         }
     }
 }
+
+
 
 
