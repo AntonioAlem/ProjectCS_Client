@@ -1,7 +1,5 @@
 package com.insure.client;
 
-import com.insure.client.gen.UserException;
-import com.insure.client.gen.UserException_Exception;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -52,9 +50,7 @@ public class Signature {
         String Hash = createHash(content);
         if (hash.equals(decryptedHash)) {
             return true;
-        } else {
-            throw new UserException_Exception("You are not allowed to add document do this claim. Please try again");
-        }
+        } else throw new UserException("You are not allowed to add document do this claim. Please try again");
     }
 
     //public static void main(String[] args) throws Exception {

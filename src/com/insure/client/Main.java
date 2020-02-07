@@ -92,12 +92,13 @@ public class Main {
                                     "PrivateKey", content);
                             if (numb < 5) {
                                 dataStore.createAddDocumentOfficer(numb, claimID, content, signature);
+
                             } else {
                                 dataStore.createAddDocumentClient(numb, claimID, content, signature);
                             }
                             JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress 'OK' to " +
                                     "continue");
-                        } catch (UserException_Exception | Exception_Exception e) {
+                        } catch (Exception e) {
                             String message = e.getMessage();
                             JOptionPane.showMessageDialog(null, message);
                         }
@@ -118,7 +119,7 @@ public class Main {
                                         numb));//Show}
                                 // all documents of the claim
                             }
-                        } catch (UserException_Exception e) {
+                        } catch (Exception e) {
                             String message = e.getMessage();
                             JOptionPane.showMessageDialog(null, message);
                         }
@@ -135,12 +136,15 @@ public class Main {
                                 ddid = JOptionPane.showInputDialog("Insert Document ID:");
                             }
                             int docID = Integer.parseInt(ddid);
+
                             if (numb < 5) {
                                 dataStore.deleteDocumentsOfficer(claimID, docID);
                             } else {
                                 dataStore.deleteDocumentsClient(claimID, docID, numb);
                             }
-                        } catch (UserException_Exception e) {
+                            JOptionPane.showMessageDialog(null, "You deleted a document from your Claim \nPress 'OK' to " +
+                                    "continue");
+                        } catch (Exception e) {
                             String message = e.getMessage();
                             JOptionPane.showMessageDialog(null, message);
                         }
@@ -173,7 +177,7 @@ public class Main {
                             }
                             JOptionPane.showMessageDialog(null, "You updated a document to a Claim \nPress 'OK' to " +
                                     "continue");
-                        } catch (UserException_Exception e) {
+                        } catch (Exception e) {
                             String message = e.getMessage();
                             JOptionPane.showMessageDialog(null, message);
                         }
