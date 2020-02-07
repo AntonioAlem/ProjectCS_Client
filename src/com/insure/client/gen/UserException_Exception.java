@@ -22,11 +22,10 @@ public class UserException_Exception
     private UserException faultInfo;
 
     /**
-     * 
-     * @param faultInfo
+     *
      * @param message
      */
-    public UserException_Exception(String message, UserException faultInfo) {
+    public UserException_Exception(String message) {
         super(message);
         this.faultInfo = faultInfo;
     }

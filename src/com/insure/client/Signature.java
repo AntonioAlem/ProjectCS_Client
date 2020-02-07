@@ -1,5 +1,8 @@
 package com.insure.client;
 
+import com.insure.client.gen.UserException;
+import com.insure.client.gen.UserException_Exception;
+
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -50,7 +53,7 @@ public class Signature {
         if (hash.equals(decryptedHash)){
             return true;
         }else{
-            throw new documentWasTamperedException();
+            throw new UserException_Exception("You´re not allowed to add document do this claim. Please try again");
         }
     }
 
