@@ -53,7 +53,7 @@ public class Signature {
         if (hash.equals(decryptedHash)){
             return true;
         }else{
-            throw new UserException_Exception("You´re not allowed to add document do this claim. Please try again");
+            throw new UserException_Exception("You are not allowed to add document do this claim. Please try again");
         }
     }
 
