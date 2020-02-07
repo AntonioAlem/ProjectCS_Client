@@ -82,7 +82,7 @@ public class Main {
                         }
                         try {
                             String claimAsString = JOptionPane.showInputDialog("Insert Claim ID:");
-                            while (claimAsString.equals("")||(claimAsString.matches("[0-9]+") && userID.length() > 0)) {
+                            while (claimAsString.equals("") || (!claimAsString.matches("[0-9]+") && userID.length() > 0)) {
                                 claimAsString = JOptionPane.showInputDialog("Insert Claim ID:");
                             }
                             int claimID = Integer.parseInt(claimAsString);
@@ -90,13 +90,13 @@ public class Main {
                             Signature sig = new Signature();
                             String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID +
                                     "PrivateKey", content);
+
                             if (numb < 5) {
                                 dataStore.createAddDocumentOfficer(numb, claimID, content, signature);
                             } else {
                                 dataStore.createAddDocumentClient(numb, claimID, content, signature);
                             }
-                            JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress'OK' " +
-                                    "to " +
+                            JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress 'OK' to " +
                                     "continue");
                         } catch (UserException_Exception | Exception_Exception e) {
                             String message = e.getMessage();
@@ -107,7 +107,7 @@ public class Main {
                     if (method.equals("3")) { //3 - Retrieve Documents from a Claim
                         try {
                             String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
-                            while (uuid.equals("")||(uuid.matches("[0-9]+") && userID.length() > 0)) {
+                            while (uuid.equals("") || (!uuid.matches("[0-9]+") && userID.length() > 0)) {
                                 uuid = JOptionPane.showInputDialog("Insert Claim ID:");
                             }
                             int claimID = Integer.parseInt(uuid);
@@ -128,12 +128,12 @@ public class Main {
                     if (method.equals("4")) {//4 - Delete a Document  from a Claim
                         try {
                             String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
-                            while (uuid.equals("")||(uuid.matches("[0-9]+") && userID.length() > 0)) {
+                            while (uuid.equals("") || (!uuid.matches("[0-9]+") && userID.length() > 0)) {
                                 uuid = JOptionPane.showInputDialog("Insert Claim ID:");
                             }
                             int claimID = Integer.parseInt(uuid);
                             String ddid = JOptionPane.showInputDialog("Insert Document ID:");
-                            while (ddid.equals("")||(ddid.matches("[0-9]+") && userID.length() > 0)) {
+                            while (ddid.equals("") || (!ddid.matches("[0-9]+") && userID.length() > 0)) {
                                 ddid = JOptionPane.showInputDialog("Insert Document ID:");
                             }
                             int docID = Integer.parseInt(ddid);
@@ -150,12 +150,12 @@ public class Main {
                     if (method.equals("5")) {//5 - Update a Document  from a Claim
                         try {
                             String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
-                            while (uuid.equals("")||(uuid.matches("[0-9]+") && userID.length() > 0)) {
+                            while (uuid.equals("") || (!uuid.matches("[0-9]+") && userID.length() > 0)) {
                                 uuid = JOptionPane.showInputDialog("Insert Claim ID:");
                             }
                             int claimID = Integer.parseInt(uuid);
                             String ddid = JOptionPane.showInputDialog("Insert Document ID:");
-                            while (ddid.equals("")||(ddid.matches("[0-9]+") && userID.length() > 0)) {
+                            while (ddid.equals("") || (!ddid.matches("[0-9]+") && userID.length() > 0)) {
                                 ddid = JOptionPane.showInputDialog("Insert Document ID:");
                             }
                             int docID = Integer.parseInt(ddid);
@@ -173,6 +173,8 @@ public class Main {
                             } else {
                                 dataStore.updateDocumentClient(numb, claimID, docID, content, signature);
                             }
+                            JOptionPane.showMessageDialog(null, "You updated a document to a Claim \nPress 'OK' to " +
+                                    "continue");
                         } catch (UserException_Exception e) {
                             String message = e.getMessage();
                             JOptionPane.showMessageDialog(null, message);
