@@ -13,7 +13,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         //Wsimport.bat -s ..\src -keep -p com.insure.client.gen "http://localhost:8090/docstorage?wsdl"
 
-        String url = "http://localhost:8091/docstorage";
+        String url = "http://localhost:8090/docstorage";
         ClaimDataStoreService dss = new ClaimDataStoreService();
 
         ClaimDataStore dataStore = dss.getClaimDataStorePort();
@@ -80,22 +80,23 @@ public class Main {
                     }
 
                     if (method.equals("2")) { //3 - Add Document to a Claim
-                        String claimAsString = JOptionPane.showInputDialog("Insert Claim ID:");
+                        String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
+                        while (uuid.equals("") || (!uuid.matches("[0-9]+") && userID.length() > 0)) {
+                            uuid = JOptionPane.showInputDialog("Insert Claim ID:");
+                        }
                         try {
-                            if (userID.matches("[0-9]+") && userID.length() > 0) {
-                                int claimID = Integer.parseInt(claimAsString);
-                                String content = JOptionPane.showInputDialog("Insert the content of the document");
-                                Signature sig = new Signature();
-                                String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID +
-                                        "PrivateKey", content);
-                                if (numb < 5) {
-                                    dataStore.createAddDocumentOfficer(numb, claimID, content, signature);
-                                } else {
-                                    dataStore.createAddDocumentClient(numb, claimID, content, signature);
-                                }
-                                JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress 'OK' to " +
-                                        "continue");
-                            } else JOptionPane.showMessageDialog(null, "Invalid User ID");
+                            int claimID = Integer.parseInt(uuid);
+                            String content = JOptionPane.showInputDialog("Insert the content of the document");
+                            Signature sig = new Signature();
+                            String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID +
+                                    "PrivateKey", content);
+                            if (numb < 5) {
+                                dataStore.createAddDocumentOfficer(numb, claimID, content, signature);
+                            } else {
+                                dataStore.createAddDocumentClient(numb, claimID, content, signature);
+                            }
+                            JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress 'OK' to " +
+                                    "continue");
                         } catch (UserException_Exception | Exception_Exception e) {
                             String message = e.getMessage();
                             JOptionPane.showMessageDialog(null, message);
