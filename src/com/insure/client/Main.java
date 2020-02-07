@@ -45,10 +45,11 @@ public class Main {
                                     "1 - Create a Claim" + "\n" +
                                     "2 - Add a Document to a Claim" + "\n" +
                                     "3 - Retrieve Documents from a Claim" + "\n" +
-                                    "4 - Delete a Document  from a Claim" + "\n" +
+                                    "4 - Delete a Document" + "\n" +
+                                    "5 - Update a Document" + "\n" +
                                     "\n" +
-                                    "5 - Exit");
-                    if (method.equals("5")) {
+                                    "6 - Exit");
+                    if (method.equals("6")) {
                         break;
                     }
                     if (method.equals("1")) {
@@ -135,7 +136,28 @@ public class Main {
                             JOptionPane.showMessageDialog(null, message);
                         }
                     }
-
+                    if (method.equals("4")) {//4 - Delete a Document  from a Claim
+                        try {
+                            String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
+                            while (uuid.equals("")) { //repeat Claim ID request until inserted value not null
+                                uuid = JOptionPane.showInputDialog("Insert Claim ID:");
+                            }
+                            int claimID = Integer.parseInt(uuid);
+                            String ddid = JOptionPane.showInputDialog("Insert Document ID:");
+                            while (ddid.equals("")) { //repeat Claim ID request until inserted value not null
+                                ddid = JOptionPane.showInputDialog("Insert Document ID:");
+                            }
+                            int docID = Integer.parseInt(ddid);
+                            if (numb < 5) {
+                                dataStore.updateDocumentOfficer(claimID, docID, numb);
+                            } else {
+                                dataStore.updateDocumentClient(claimID, docID, numb);
+                            }
+                        } catch (UserException_Exception e) {
+                            String message = e.getMessage();
+                            JOptionPane.showMessageDialog(null, message);
+                        }
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "User ID not found");
