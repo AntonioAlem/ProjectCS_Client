@@ -136,7 +136,7 @@ public class Main {
                             JOptionPane.showMessageDialog(null, message);
                         }
                     }
-                    if (method.equals("4")) {//4 - Delete a Document  from a Claim
+                    if (method.equals("5")) {//5 - Update a Document  from a Claim
                         try {
                             String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
                             while (uuid.equals("")) { //repeat Claim ID request until inserted value not null
@@ -148,10 +148,14 @@ public class Main {
                                 ddid = JOptionPane.showInputDialog("Insert Document ID:");
                             }
                             int docID = Integer.parseInt(ddid);
+                            String content = JOptionPane.showInputDialog("Insert the new content of the document");
+                            Signature sig = new Signature();
+                            String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID +
+                                    "PrivateKey", content);
                             if (numb < 5) {
-                                dataStore.updateDocumentOfficer(claimID, docID, numb);
+                                dataStore.updateDocumentOfficer(numb, claimID, docID, content, signature);
                             } else {
-                                dataStore.updateDocumentClient(claimID, docID, numb);
+                                dataStore.updateDocumentClient(numb, claimID, docID, content, signature);
                             }
                         } catch (UserException_Exception e) {
                             String message = e.getMessage();
