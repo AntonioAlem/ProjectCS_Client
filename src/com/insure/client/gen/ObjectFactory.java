@@ -38,6 +38,8 @@ public class ObjectFactory {
     private final static QName _DeleteDocumentsOfficerResponse_QNAME = new QName("http://server.insure.com/", "deleteDocumentsOfficerResponse");
     private final static QName _GetClaimFromID_QNAME = new QName("http://server.insure.com/", "getClaimFromID");
     private final static QName _GetClaimFromIDResponse_QNAME = new QName("http://server.insure.com/", "getClaimFromIDResponse");
+    private final static QName _GetDocFromClaim_QNAME = new QName("http://server.insure.com/", "getDocFromClaim");
+    private final static QName _GetDocFromClaimResponse_QNAME = new QName("http://server.insure.com/", "getDocFromClaimResponse");
     private final static QName _PrintClaim_QNAME = new QName("http://server.insure.com/", "printClaim");
     private final static QName _PrintClaimResponse_QNAME = new QName("http://server.insure.com/", "printClaimResponse");
     private final static QName _RetrieveDocumentsClient_QNAME = new QName("http://server.insure.com/", "retrieveDocumentsClient");
@@ -171,6 +173,22 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link GetDocFromClaim }
+     * 
+     */
+    public GetDocFromClaim createGetDocFromClaim() {
+        return new GetDocFromClaim();
+    }
+
+    /**
+     * Create an instance of {@link GetDocFromClaimResponse }
+     * 
+     */
+    public GetDocFromClaimResponse createGetDocFromClaimResponse() {
+        return new GetDocFromClaimResponse();
+    }
+
+    /**
      * Create an instance of {@link PrintClaim }
      * 
      */
@@ -280,6 +298,14 @@ public class ObjectFactory {
      */
     public AtomicInteger createAtomicInteger() {
         return new AtomicInteger();
+    }
+
+    /**
+     * Create an instance of {@link Document }
+     * 
+     */
+    public Document createDocument() {
+        return new Document();
     }
 
     /**
@@ -462,6 +488,32 @@ public class ObjectFactory {
     @XmlElementDecl(namespace = "http://server.insure.com/", name = "getClaimFromIDResponse")
     public JAXBElement<GetClaimFromIDResponse> createGetClaimFromIDResponse(GetClaimFromIDResponse value) {
         return new JAXBElement<GetClaimFromIDResponse>(_GetClaimFromIDResponse_QNAME, GetClaimFromIDResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDocFromClaim }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link GetDocFromClaim }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "getDocFromClaim")
+    public JAXBElement<GetDocFromClaim> createGetDocFromClaim(GetDocFromClaim value) {
+        return new JAXBElement<GetDocFromClaim>(_GetDocFromClaim_QNAME, GetDocFromClaim.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetDocFromClaimResponse }{@code >}
+     * 
+     * @param value
+     *     Java instance representing xml element's value.
+     * @return
+     *     the new instance of {@link JAXBElement }{@code <}{@link GetDocFromClaimResponse }{@code >}
+     */
+    @XmlElementDecl(namespace = "http://server.insure.com/", name = "getDocFromClaimResponse")
+    public JAXBElement<GetDocFromClaimResponse> createGetDocFromClaimResponse(GetDocFromClaimResponse value) {
+        return new JAXBElement<GetDocFromClaimResponse>(_GetDocFromClaimResponse_QNAME, GetDocFromClaimResponse.class, null, value);
     }
 
     /**
