@@ -42,37 +42,82 @@ public interface ClaimDataStore {
      * @param arg1
      * @param arg0
      * @return
-     *     returns int
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "createClaim", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateClaim")
-    @ResponseWrapper(localName = "createClaimResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateClaimResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/createClaimRequest", output = "http://server.insure.com/ClaimDataStore/createClaimResponse")
-    public int createClaim(
-        @WebParam(name = "arg0", targetNamespace = "")
-        String arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        int arg1);
-
-    /**
-     * 
-     * @param arg0
-     * @return
      *     returns java.lang.String
      * @throws UserException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "printClaim", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.PrintClaim")
-    @ResponseWrapper(localName = "printClaimResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.PrintClaimResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/printClaimRequest", output = "http://server.insure.com/ClaimDataStore/printClaimResponse", fault = {
-        @FaultAction(className = UserException_Exception.class, value = "http://server.insure.com/ClaimDataStore/printClaim/Fault/UserException")
+    @RequestWrapper(localName = "retrieveDocumentsClient", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.RetrieveDocumentsClient")
+    @ResponseWrapper(localName = "retrieveDocumentsClientResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.RetrieveDocumentsClientResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/retrieveDocumentsClientRequest", output = "http://server.insure.com/ClaimDataStore/retrieveDocumentsClientResponse", fault = {
+        @FaultAction(className = UserException_Exception.class, value = "http://server.insure.com/ClaimDataStore/retrieveDocumentsClient/Fault/UserException")
     })
-    public String printClaim(
+    public String retrieveDocumentsClient(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0)
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1)
         throws UserException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns int
+     * @throws Exception_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "createAddDocumentClient", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateAddDocumentClient")
+    @ResponseWrapper(localName = "createAddDocumentClientResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateAddDocumentClientResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/createAddDocumentClientRequest", output = "http://server.insure.com/ClaimDataStore/createAddDocumentClientResponse", fault = {
+        @FaultAction(className = Exception_Exception.class, value = "http://server.insure.com/ClaimDataStore/createAddDocumentClient/Fault/Exception")
+    })
+    public int createAddDocumentClient(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3)
+        throws Exception_Exception
+    ;
+
+    /**
+     * 
+     * @param arg3
+     * @param arg2
+     * @param arg1
+     * @param arg0
+     * @return
+     *     returns int
+     * @throws Exception_Exception
+     * @throws UserException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "createAddDocumentOfficer", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateAddDocumentOfficer")
+    @ResponseWrapper(localName = "createAddDocumentOfficerResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateAddDocumentOfficerResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/createAddDocumentOfficerRequest", output = "http://server.insure.com/ClaimDataStore/createAddDocumentOfficerResponse", fault = {
+        @FaultAction(className = UserException_Exception.class, value = "http://server.insure.com/ClaimDataStore/createAddDocumentOfficer/Fault/UserException"),
+        @FaultAction(className = Exception_Exception.class, value = "http://server.insure.com/ClaimDataStore/createAddDocumentOfficer/Fault/Exception")
+    })
+    public int createAddDocumentOfficer(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1,
+        @WebParam(name = "arg2", targetNamespace = "")
+        String arg2,
+        @WebParam(name = "arg3", targetNamespace = "")
+        String arg3)
+        throws Exception_Exception, UserException_Exception
     ;
 
     /**
@@ -120,7 +165,6 @@ public interface ClaimDataStore {
 
     /**
      * 
-     * @param arg1
      * @param arg0
      * @return
      *     returns java.lang.String
@@ -128,34 +172,12 @@ public interface ClaimDataStore {
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "retrieveDocumentsClient", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.RetrieveDocumentsClient")
-    @ResponseWrapper(localName = "retrieveDocumentsClientResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.RetrieveDocumentsClientResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/retrieveDocumentsClientRequest", output = "http://server.insure.com/ClaimDataStore/retrieveDocumentsClientResponse", fault = {
-        @FaultAction(className = UserException_Exception.class, value = "http://server.insure.com/ClaimDataStore/retrieveDocumentsClient/Fault/UserException")
+    @RequestWrapper(localName = "printClaim", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.PrintClaim")
+    @ResponseWrapper(localName = "printClaimResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.PrintClaimResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/printClaimRequest", output = "http://server.insure.com/ClaimDataStore/printClaimResponse", fault = {
+        @FaultAction(className = UserException_Exception.class, value = "http://server.insure.com/ClaimDataStore/printClaim/Fault/UserException")
     })
-    public String retrieveDocumentsClient(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        int arg1)
-        throws UserException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg0
-     * @return
-     *     returns java.lang.String
-     * @throws UserException_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "retrieveDocumentsOfficer", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.RetrieveDocumentsOfficer")
-    @ResponseWrapper(localName = "retrieveDocumentsOfficerResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.RetrieveDocumentsOfficerResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/retrieveDocumentsOfficerRequest", output = "http://server.insure.com/ClaimDataStore/retrieveDocumentsOfficerResponse", fault = {
-        @FaultAction(className = UserException_Exception.class, value = "http://server.insure.com/ClaimDataStore/retrieveDocumentsOfficer/Fault/UserException")
-    })
-    public String retrieveDocumentsOfficer(
+    public String printClaim(
         @WebParam(name = "arg0", targetNamespace = "")
         int arg0)
         throws UserException_Exception
@@ -165,81 +187,19 @@ public interface ClaimDataStore {
      * 
      * @param arg1
      * @param arg0
-     * @throws UserException_Exception
-     */
-    @WebMethod
-    @RequestWrapper(localName = "deleteDocumentsOfficer", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.DeleteDocumentsOfficer")
-    @ResponseWrapper(localName = "deleteDocumentsOfficerResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.DeleteDocumentsOfficerResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/deleteDocumentsOfficerRequest", output = "http://server.insure.com/ClaimDataStore/deleteDocumentsOfficerResponse", fault = {
-        @FaultAction(className = UserException_Exception.class, value = "http://server.insure.com/ClaimDataStore/deleteDocumentsOfficer/Fault/UserException")
-    })
-    public void deleteDocumentsOfficer(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        int arg1)
-        throws UserException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg1
-     * @param arg0
      * @return
      *     returns int
-     * @throws Exception_Exception
-     * @throws UserException_Exception
      */
     @WebMethod
     @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "createAddDocumentOfficer", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateAddDocumentOfficer")
-    @ResponseWrapper(localName = "createAddDocumentOfficerResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateAddDocumentOfficerResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/createAddDocumentOfficerRequest", output = "http://server.insure.com/ClaimDataStore/createAddDocumentOfficerResponse", fault = {
-        @FaultAction(className = UserException_Exception.class, value = "http://server.insure.com/ClaimDataStore/createAddDocumentOfficer/Fault/UserException"),
-        @FaultAction(className = Exception_Exception.class, value = "http://server.insure.com/ClaimDataStore/createAddDocumentOfficer/Fault/Exception")
-    })
-    public int createAddDocumentOfficer(
+    @RequestWrapper(localName = "createClaim", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateClaim")
+    @ResponseWrapper(localName = "createClaimResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateClaimResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/createClaimRequest", output = "http://server.insure.com/ClaimDataStore/createClaimResponse")
+    public int createClaim(
         @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
+        String arg0,
         @WebParam(name = "arg1", targetNamespace = "")
-        int arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3)
-        throws Exception_Exception, UserException_Exception
-    ;
-
-    /**
-     * 
-     * @param arg3
-     * @param arg2
-     * @param arg1
-     * @param arg0
-     * @return
-     *     returns int
-     * @throws Exception_Exception
-     */
-    @WebMethod
-    @WebResult(targetNamespace = "")
-    @RequestWrapper(localName = "createAddDocumentClient", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateAddDocumentClient")
-    @ResponseWrapper(localName = "createAddDocumentClientResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.CreateAddDocumentClientResponse")
-    @Action(input = "http://server.insure.com/ClaimDataStore/createAddDocumentClientRequest", output = "http://server.insure.com/ClaimDataStore/createAddDocumentClientResponse", fault = {
-        @FaultAction(className = Exception_Exception.class, value = "http://server.insure.com/ClaimDataStore/createAddDocumentClient/Fault/Exception")
-    })
-    public int createAddDocumentClient(
-        @WebParam(name = "arg0", targetNamespace = "")
-        int arg0,
-        @WebParam(name = "arg1", targetNamespace = "")
-        int arg1,
-        @WebParam(name = "arg2", targetNamespace = "")
-        String arg2,
-        @WebParam(name = "arg3", targetNamespace = "")
-        String arg3)
-        throws Exception_Exception
-    ;
+        int arg1);
 
     /**
      * 
@@ -291,6 +251,46 @@ public interface ClaimDataStore {
         @WebParam(name = "arg4", targetNamespace = "")
         String arg4)
         throws Exception_Exception
+    ;
+
+    /**
+     * 
+     * @param arg1
+     * @param arg0
+     * @throws UserException_Exception
+     */
+    @WebMethod
+    @RequestWrapper(localName = "deleteDocumentsOfficer", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.DeleteDocumentsOfficer")
+    @ResponseWrapper(localName = "deleteDocumentsOfficerResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.DeleteDocumentsOfficerResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/deleteDocumentsOfficerRequest", output = "http://server.insure.com/ClaimDataStore/deleteDocumentsOfficerResponse", fault = {
+        @FaultAction(className = UserException_Exception.class, value = "http://server.insure.com/ClaimDataStore/deleteDocumentsOfficer/Fault/UserException")
+    })
+    public void deleteDocumentsOfficer(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0,
+        @WebParam(name = "arg1", targetNamespace = "")
+        int arg1)
+        throws UserException_Exception
+    ;
+
+    /**
+     * 
+     * @param arg0
+     * @return
+     *     returns java.lang.String
+     * @throws UserException_Exception
+     */
+    @WebMethod
+    @WebResult(targetNamespace = "")
+    @RequestWrapper(localName = "retrieveDocumentsOfficer", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.RetrieveDocumentsOfficer")
+    @ResponseWrapper(localName = "retrieveDocumentsOfficerResponse", targetNamespace = "http://server.insure.com/", className = "com.insure.client.gen.RetrieveDocumentsOfficerResponse")
+    @Action(input = "http://server.insure.com/ClaimDataStore/retrieveDocumentsOfficerRequest", output = "http://server.insure.com/ClaimDataStore/retrieveDocumentsOfficerResponse", fault = {
+        @FaultAction(className = UserException_Exception.class, value = "http://server.insure.com/ClaimDataStore/retrieveDocumentsOfficer/Fault/UserException")
+    })
+    public String retrieveDocumentsOfficer(
+        @WebParam(name = "arg0", targetNamespace = "")
+        int arg0)
+        throws UserException_Exception
     ;
 
     /**
