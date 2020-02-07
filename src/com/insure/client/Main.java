@@ -160,7 +160,7 @@ public class Main {
                             Document doc = dataStore.getDocFromClaim(claimID, docID);
                             if (doc.getLastUser()!= numb) {
                                 JOptionPane.showMessageDialog(null,
-                                        "This document was last updated by: " + doc.getLastUser());
+                                        "This document was last updated by: user" + doc.getLastUser());
                             }
                             String content = JOptionPane.showInputDialog("Insert the new content of the document");
                             Signature sig = new Signature();

@@ -285,6 +285,14 @@ public class ObjectFactory {
     }
 
     /**
+     * Create an instance of {@link Document }
+     * 
+     */
+    public Document createDocument() {
+        return new Document();
+    }
+
+    /**
      * Create an instance of {@link Claim }
      * 
      */
@@ -298,14 +306,6 @@ public class ObjectFactory {
      */
     public AtomicInteger createAtomicInteger() {
         return new AtomicInteger();
-    }
-
-    /**
-     * Create an instance of {@link Document }
-     * 
-     */
-    public Document createDocument() {
-        return new Document();
     }
 
     /**
