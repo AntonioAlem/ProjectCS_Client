@@ -39,7 +39,7 @@ public class Main {
                 }
                 while (true) {
                     String method = JOptionPane.showInputDialog(
-                            "Mr./Ms. Client," + "\n" +
+                            "Welcome to InsSure," + "\n" +
                                     "Insert what you wish to do:" + "\n" +
                                     "\n" +
                                     "1 - Create a Claim" + "\n" +
@@ -80,11 +80,13 @@ public class Main {
                             Signature sig = new Signature();
                             String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID +
                                     "PrivateKey", content);
-
-                            dataStore.createAddDocument(numb, claimID, content, signature);
+                            if (numb<5) {
+                                dataStore.createAddDocumentOfficer(numb, claimID, content, signature);
+                            }else{
+                                dataStore.createAddDocumentClient(numb, claimID, content, signature);
+                            }
                             JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress'OK' to " +
                                     "continue");
-
                         } catch (UserException_Exception | Exception_Exception e) {
                             String message = e.getMessage();
                             JOptionPane.showMessageDialog(null, message);
