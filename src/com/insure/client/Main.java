@@ -39,7 +39,7 @@ public class Main {
                 }
                 while (true) {
                     String method = JOptionPane.showInputDialog(
-                            "Welcome to InsSure," + "\n" +
+                            "Welcome to InSure," + "\n" +
                                     "Insert what you wish to do:" + "\n" +
                                     "\n" +
                                     "1 - Create a Claim" + "\n" +
@@ -80,9 +80,9 @@ public class Main {
                             Signature sig = new Signature();
                             String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID +
                                     "PrivateKey", content);
-                            if (numb<5) {
+                            if (numb < 5) {
                                 dataStore.createAddDocumentOfficer(numb, claimID, content, signature);
-                            }else{
+                            } else {
                                 dataStore.createAddDocumentClient(numb, claimID, content, signature);
                             }
                             JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress'OK' to " +
@@ -100,8 +100,14 @@ public class Main {
                                 uuid = JOptionPane.showInputDialog("Insert Claim ID:");
                             }
                             int claimID = Integer.parseInt(uuid);
-                            JOptionPane.showMessageDialog(null, dataStore.retrieveDocuments(claimID, numb));//Show
-                            // all documents of the claim
+                            if (numb < 5) {
+                                JOptionPane.showMessageDialog(null,
+                                        dataStore.retrieveDocumentsOfficer(claimID, numb));//Show}
+                                // all documents of the claim
+                            } else {
+                                JOptionPane.showMessageDialog(null, dataStore.retrieveDocumentsClient(claimID, numb));//Show}
+                                // all documents of the claim
+                            }
                         } catch (UserException_Exception e) {
                             String message = e.getMessage();
                             JOptionPane.showMessageDialog(null, message);
@@ -119,7 +125,11 @@ public class Main {
                                 ddid = JOptionPane.showInputDialog("Insert Document ID:");
                             }
                             int docID = Integer.parseInt(ddid);
-                            dataStore.deleteDocuments(claimID, docID, numb);
+                            if (numb < 5) {
+                                dataStore.deleteDocumentsOfficer(claimID, docID, numb);
+                            } else {
+                                dataStore.deleteDocumentsClient(claimID, docID, numb);
+                            }
                         } catch (UserException_Exception e) {
                             String message = e.getMessage();
                             JOptionPane.showMessageDialog(null, message);
