@@ -1,13 +1,11 @@
 package com.insure.client;
 
-import com.insure.client.gen.ClaimDataStore;
-import com.insure.client.gen.ClaimDataStoreService;
-import com.insure.client.gen.Exception_Exception;
-import com.insure.client.gen.UserException_Exception;
+import com.insure.client.gen.*;
 
 import javax.swing.*;
 import javax.xml.ws.BindingProvider;
 import java.io.File;
+import java.lang.Exception;
 
 public class Main {
     private static ClaimDataStore docStorage;
@@ -49,6 +47,18 @@ public class Main {
                                     "5 - Update a Document" + "\n" +
                                     "\n" +
                                     "6 - Exit");
+                    while (!method.matches("[0-6]+") && method.length() > 0) {
+                        method = JOptionPane.showInputDialog("Welcome to InSure," + "\n" +
+                                "Insert what you wish to do:" + "\n" +
+                                "\n" +
+                                "1 - Create a Claim" + "\n" +
+                                "2 - Add a Document to a Claim" + "\n" +
+                                "3 - Retrieve Documents from a Claim" + "\n" +
+                                "4 - Delete a Document" + "\n" +
+                                "5 - Update a Document" + "\n" +
+                                "\n" +
+                                "6 - Exit");
+                    }
                     if (method.equals("6")) {
                         break;
                     }
@@ -66,14 +76,13 @@ public class Main {
                         }
                     }
 
-                    if (method.equals("2")) {
-
+                    if (method.equals("2")) { //3 - Add Document to a Claim
                         for (int i = 1; i <= dataStore.size(); i++) {  //prints existing claims
                             System.out.println(dataStore.printClaim(i));
                         }
                         try {
                             String claimAsString = JOptionPane.showInputDialog("Insert Claim ID:");
-                            while (claimAsString.equals("")) {
+                            while (claimAsString.equals("")||(claimAsString.matches("[0-9]+") && userID.length() > 0)) {
                                 claimAsString = JOptionPane.showInputDialog("Insert Claim ID:");
                             }
                             int claimID = Integer.parseInt(claimAsString);
@@ -86,7 +95,8 @@ public class Main {
                             } else {
                                 dataStore.createAddDocumentClient(numb, claimID, content, signature);
                             }
-                            JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress'OK' to " +
+                            JOptionPane.showMessageDialog(null, "You added a document to your Claim \nPress'OK' " +
+                                    "to " +
                                     "continue");
                         } catch (UserException_Exception | Exception_Exception e) {
                             String message = e.getMessage();
@@ -97,16 +107,17 @@ public class Main {
                     if (method.equals("3")) { //3 - Retrieve Documents from a Claim
                         try {
                             String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
-                            while (uuid.equals("")) { //repeat Claim ID request until inserted value not null
+                            while (uuid.equals("")||(uuid.matches("[0-9]+") && userID.length() > 0)) {
                                 uuid = JOptionPane.showInputDialog("Insert Claim ID:");
                             }
                             int claimID = Integer.parseInt(uuid);
                             if (numb < 5) {
                                 JOptionPane.showMessageDialog(null,
-                                        dataStore.retrieveDocumentsOfficer(claimID, numb));//Show}
+                                        dataStore.retrieveDocumentsOfficer(claimID));//Show}
                                 // all documents of the claim
                             } else {
-                                JOptionPane.showMessageDialog(null, dataStore.retrieveDocumentsClient(claimID, numb));//Show}
+                                JOptionPane.showMessageDialog(null, dataStore.retrieveDocumentsClient(claimID,
+                                        numb));//Show}
                                 // all documents of the claim
                             }
                         } catch (UserException_Exception e) {
@@ -117,17 +128,17 @@ public class Main {
                     if (method.equals("4")) {//4 - Delete a Document  from a Claim
                         try {
                             String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
-                            while (uuid.equals("")) { //repeat Claim ID request until inserted value not null
+                            while (uuid.equals("")||(uuid.matches("[0-9]+") && userID.length() > 0)) {
                                 uuid = JOptionPane.showInputDialog("Insert Claim ID:");
                             }
                             int claimID = Integer.parseInt(uuid);
                             String ddid = JOptionPane.showInputDialog("Insert Document ID:");
-                            while (ddid.equals("")) { //repeat Claim ID request until inserted value not null
+                            while (ddid.equals("")||(ddid.matches("[0-9]+") && userID.length() > 0)) {
                                 ddid = JOptionPane.showInputDialog("Insert Document ID:");
                             }
                             int docID = Integer.parseInt(ddid);
                             if (numb < 5) {
-                                dataStore.deleteDocumentsOfficer(claimID, docID, numb);
+                                dataStore.deleteDocumentsOfficer(claimID, docID);
                             } else {
                                 dataStore.deleteDocumentsClient(claimID, docID, numb);
                             }
@@ -139,12 +150,12 @@ public class Main {
                     if (method.equals("5")) {//5 - Update a Document  from a Claim
                         try {
                             String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
-                            while (uuid.equals("")) { //repeat Claim ID request until inserted value not null
+                            while (uuid.equals("")||(uuid.matches("[0-9]+") && userID.length() > 0)) {
                                 uuid = JOptionPane.showInputDialog("Insert Claim ID:");
                             }
                             int claimID = Integer.parseInt(uuid);
                             String ddid = JOptionPane.showInputDialog("Insert Document ID:");
-                            while (ddid.equals("")) { //repeat Claim ID request until inserted value not null
+                            while (ddid.equals("")||(ddid.matches("[0-9]+") && userID.length() > 0)) {
                                 ddid = JOptionPane.showInputDialog("Insert Document ID:");
                             }
                             int docID = Integer.parseInt(ddid);
@@ -152,9 +163,11 @@ public class Main {
                             Signature sig = new Signature();
                             String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID +
                                     "PrivateKey", content);
-
-                            dataStore.getClaimFromID(claimID).getDocFromID_DS(docID);
-
+                            Document doc = dataStore.getDocFromIDDS(docID, numb);
+                            if (doc.getLastUser() != numb) {
+                                JOptionPane.showMessageDialog(null,
+                                        "This document was last updated by: " + doc.getLastUser());
+                            }
                             if (numb < 5) {
                                 dataStore.updateDocumentOfficer(numb, claimID, docID, content, signature);
                             } else {
