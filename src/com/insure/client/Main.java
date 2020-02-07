@@ -128,15 +128,12 @@ public class Main {
                         try {
                             String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
                             while (uuid.equals("") || (!uuid.matches("[0-9]+") && userID.length() > 0)) {
-                                uuid = JOptionPane.showInputDialog("Insert Claim ID:");
-                            }
+                                uuid = JOptionPane.showInputDialog("Insert Claim ID:"); }
                             int claimID = Integer.parseInt(uuid);
                             String ddid = JOptionPane.showInputDialog("Insert Document ID:");
                             while (ddid.equals("") || (!ddid.matches("[0-9]+") && userID.length() > 0)) {
-                                ddid = JOptionPane.showInputDialog("Insert Document ID:");
-                            }
+                                ddid = JOptionPane.showInputDialog("Insert Document ID:");}
                             int docID = Integer.parseInt(ddid);
-
                             if (numb < 5) {
                                 dataStore.deleteDocumentsOfficer(claimID, docID);
                             } else {
@@ -153,23 +150,23 @@ public class Main {
                         try {
                             String uuid = JOptionPane.showInputDialog("Insert Claim ID:");
                             while (uuid.equals("") || (!uuid.matches("[0-9]+") && userID.length() > 0)) {
-                                uuid = JOptionPane.showInputDialog("Insert Claim ID:");
-                            }
+                                uuid = JOptionPane.showInputDialog("Insert Claim ID:"); }
                             int claimID = Integer.parseInt(uuid);
                             String ddid = JOptionPane.showInputDialog("Insert Document ID:");
                             while (ddid.equals("") || (!ddid.matches("[0-9]+") && userID.length() > 0)) {
-                                ddid = JOptionPane.showInputDialog("Insert Document ID:");
-                            }
+                                ddid = JOptionPane.showInputDialog("Insert Document ID:"); }
                             int docID = Integer.parseInt(ddid);
+
+                            Document doc = dataStore.getDocFromClaim(claimID, docID);
+                            if (doc.getLastUser()!= numb) {
+                                JOptionPane.showMessageDialog(null,
+                                        "This document was last updated by: " + doc.getLastUser());
+                            }
                             String content = JOptionPane.showInputDialog("Insert the new content of the document");
                             Signature sig = new Signature();
                             String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID +
                                     "PrivateKey", content);
-                            Document doc = dataStore.getDocFromClaim(claimID, docID);
-                            if (doc.getLastUser() != numb) {
-                                JOptionPane.showMessageDialog(null,
-                                        "This document was last updated by: " + doc.getLastUser());
-                            }
+
                             if (numb < 5) {
                                 dataStore.updateDocumentOfficer(numb, claimID, docID, content, signature);
                             } else {
