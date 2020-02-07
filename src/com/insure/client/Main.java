@@ -152,6 +152,9 @@ public class Main {
                             Signature sig = new Signature();
                             String signature = sig.createSignature("keys\\user" + userID + "\\user" + userID +
                                     "PrivateKey", content);
+
+                            dataStore.getClaimFromID(claimID).getDocFromID_DS(docID);
+
                             if (numb < 5) {
                                 dataStore.updateDocumentOfficer(numb, claimID, docID, content, signature);
                             } else {
